@@ -35,7 +35,6 @@ Edge lists are a common and efficient way of representing graph data. This forma
 
 Let's load the Grey's anatomy romantic encounters edge list (undirected) as shown below:
 
-
 ```python
 # Read the edge list as a list of lists (tuples)
 import csv
@@ -46,6 +45,11 @@ with open('GA-edge.csv', 'r') as f:
     for row in data:
             edge_list.append(row)
 edge_list
+```
+
+
+```python
+# Code here
 ```
 
 
@@ -90,7 +94,6 @@ edge_list
 
 So the tuples show the romantic encounters between different characters from the show. We can now load this edge list into networkx using `nx.from_edgelist()` method. Let's draw the network to visually inspect the information contained in the csv file. 
 
-
 ```python
 # Load graph from edge list and draw the network
 import networkx as nx
@@ -99,6 +102,11 @@ plt.figure(figsize=(8,7))
 GA = nx.from_edgelist(edge_list)
 nx.draw(GA, with_labels=True)
 plt.show()
+```
+
+
+```python
+# Code here
 ```
 
 
@@ -118,12 +126,16 @@ Above graph can be shown using an adjacency matrix as shown here
 
 Let's load the same dataset as above, but from an adjacency matrix this time around, instead of an edge list. We can use pandas for any of these methods to ease out the data loading task, as compared to using a csv reader. Let's see how to do this. 
 
-
 ```python
 # Load the adjacency matrix as pandas dataframe
 import pandas as pd
 GA_adj = pd.read_csv('GA-adj.csv', index_col=0)
 GA_adj
+```
+
+
+```python
+# Code here
 ```
 
 
@@ -946,14 +958,18 @@ GA_adj
 
 
 
-Here we see a 32x32 matrix, showing the possible connections between the characters with a '1' in the intersection. We can now extract the matrix information from the dataframe as an array of values only. 
-
+Here we see a 32x32 matrix, showing the possible connections between the characters with a '1' in the intersection. We can now extract the matrix information from the dataframe as an array of values only.
 
 ```python
 # Convert adjacency data into numpy array
 GA_adj_arr = GA_adj.values
 print(GA_adj_arr)
 type(GA_adj_arr)
+```
+
+
+```python
+# Code here
 ```
 
     [[0. 0. 0. ... 0. 0. 1.]
@@ -972,8 +988,7 @@ type(GA_adj_arr)
 
 
 
-Great, now we can load this multidimensional array as a graph using `nx.from_numpy_matrix()` method and visualize it as before 
-
+Great, now we can load this multidimensional array as a graph using `nx.from_numpy_matrix()` method and visualize it as before.
 
 ```python
 # Draw a graph from numpy matrix
@@ -982,12 +997,15 @@ nx.draw(GAAdj, with_labels=True)
 ```
 
 
+```python
+# Code here
+```
+
+
 ![png](index_files/index_12_0.png)
 
 
 Okie so we can see that we have lost our labels i.e. characters names. This information needs to be imported from the dataframe and create a label mapping dictionary. The `nx.relabel_nodes()` method can be used to remap nodes labels (or any other attributes) as we see below. 
-
-
 
 ```python
 # Relabel the graph nodes with column names from dataframe
@@ -998,6 +1016,11 @@ nx.draw(GAAdj, with_labels=True)
 ```
 
 
+```python
+# Code here
+```
+
+
 ![png](index_files/index_14_0.png)
 
 
@@ -1005,12 +1028,16 @@ nx.draw(GAAdj, with_labels=True)
 
 For simple graphs as we drew above from adjacency matrix and edge list , we can probably visually inspect them and work out if they are same or not. One easy way to do this in code is to compare the number of nodes, edges and average degree of the network. 
 
-
 ```python
 # Do a quick comparison between two graphs
 
 print("Edge List Graph\n", nx.info(GA))
 print("\n Adjacency Matrix Graph\n", nx.info(GAAdj))
+```
+
+
+```python
+# Code here
 ```
 
     Edge List Graph
@@ -1038,10 +1065,14 @@ Two graphs G1 and G2 are said to be isomorphic if:
 
 We can check for Isomorphism in networkx using `nx.is_isomorphic()` boolean method, which returns a true or false accordingly.
 
-
 ```python
 # Check for graph isomorphism 
 print("Are these graphs Isomorphic?", nx.is_isomorphic(GA, GAAdj))
+```
+
+
+```python
+# Code here
 ```
 
     Are these graphs Isomorphic? True
@@ -1061,10 +1092,14 @@ Networkx can read and write graphs to different formats. Visit the link provided
 
 Let's export our graph in `GEXF` (Graph Exchange XML Format), used by popular graphing platforms like `gephi`.
 
-
 ```python
 # Write graph as gexf
 nx.write_gexf(GA, 'GA_graph.gexf')
+```
+
+
+```python
+# Code here 
 ```
 
 ## Summary 
